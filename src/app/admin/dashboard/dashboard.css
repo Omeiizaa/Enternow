@@ -4,7 +4,7 @@
   flex-direction: column;
   gap: 25px;
   background: #f7fafc;
-  width: 1300px;
+  /* width: 1300px; */
   max-height: calc(100vh - 100px);
   box-sizing: border-box;
 }
