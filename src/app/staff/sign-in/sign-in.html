@@ -1,0 +1,30 @@
+<div class="signin-container">
+  <form id="signInForm" [formGroup]="signinForm" class="signin-form">
+    <div>
+      <p *ngIf="showName">{{ companyName }}</p>
+      <p *ngFor="let car of cars">{{ cars }}</p>
+      <div *ngSwitch="userCase">
+        <p *ngSwitchCase="'staff'">Staff Case</p>
+        <p *ngSwitchCase="'admin'">Admin Case</p>
+        <p *ngSwitchDefault>Default Case</p>
+      </div>
+    </div>
+    <p style="text-align: center">Signin Form</p>
+    <mat-form-field class="form-field staff-id-field">
+      <mat-label> Staff ID</mat-label>
+      <input matInput type="text" formControlName="staffID" id="staffIdInput" class="form-input" />
+    </mat-form-field>
+
+    <mat-form-field class="form-field password-field">
+      <mat-label> Password</mat-label>
+      <input
+        matInput
+        type="password"
+        formControlName="password"
+        id="passwordInput"
+        class="form-input"
+      />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit" (click)="submitForm()">Sign In</button>
+  </form>
+</div>

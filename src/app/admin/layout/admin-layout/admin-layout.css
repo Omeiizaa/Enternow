@@ -1,0 +1,30 @@
+.admin-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f9fafb; /* light gray background */
+}
+
+/* Header stays at top */
+app-header {
+  flex-shrink: 0;
+  background-color: #1e3a8a; /* deep blue */
+  color: white;
+  padding: 1rem 2rem;
+  font-weight: 600;
+}
+
+/* Body section with sidenav + main content */
+.admin-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Main content area */
+.content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #f9fafb;
+}

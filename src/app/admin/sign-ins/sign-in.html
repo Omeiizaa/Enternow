@@ -1,0 +1,71 @@
+<div class="dashboard-container">
+  <!-- ====== TOP CARD: ADMIN ASSISTED SIGN-IN ====== -->
+  <div class="card manual-signin-card">
+    <div class="card-header">
+      <h2><span class="dot"></span> Admin Assisted Sign-In</h2>
+      <p>Sign-In for staff who couldn’t sign in themselves</p>
+    </div>
+
+    <div class="form-grid">
+      <select [(ngModel)]="newStaff.name" (change)="selectStaff(newStaff.name)">
+        <option value="" disabled selected>Select staff</option>
+        <option *ngFor="let s of staffNames" [value]="s.name">{{ s.name }}</option>
+      </select>
+
+      <input
+        type="text"
+        placeholder="Staff ID (confirm before sign-in)"
+        [(ngModel)]="newStaff.staffId"
+        readonly
+      />
+
+      <button (click)="addStaffManualSignIn()" class="primary-btn">Sign-In Staff</button>
+    </div>
+  </div>
+
+  <!-- ====== SIGN-IN TABLE ====== -->
+  <div class="card table-card">
+    <div class="table-title">
+      <h2>All Sign-ins</h2>
+      <p>{{ staffSignIns.length }} total records</p>
+    </div>
+
+    <div class="table-wrapper">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Staff ID</th>
+            <th>Department</th>
+            <th>Date</th>
+            <th>Sign-In</th>
+            <th>Sign-Out</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let rec of staffSignIns">
+            <td>{{ rec.name }}</td>
+            <td>{{ rec.staffId }}</td>
+            <td>{{ rec.department }}</td>
+            <td>{{ rec.date }}</td>
+            <td>{{ rec.signInTime }}</td>
+            <td>{{ rec.signOutTime }}</td>
+
+            <td>
+              <span class="status" [ngClass]="rec.status.toLowerCase()">
+                {{ rec.status }}
+              </span>
+            </td>
+
+            <td>
+              <button class="edit-btn" (click)="editSignOutTime(rec)">Sign-Out</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

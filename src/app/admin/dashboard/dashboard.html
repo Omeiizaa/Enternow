@@ -1,0 +1,69 @@
+<div class="dashboard-container">
+
+  <!-- SUMMARY CARDS -->
+  <div class="summary-cards">
+    <mat-card class="summary-card total">
+      <h3>{{ staffSignIns.length }}</h3>
+      <p>Total Sign-ins</p>
+    </mat-card>
+
+    <mat-card class="summary-card early">
+      <h3>{{ getPercentEarly() }}%</h3>
+      <p>Early Staff</p>
+    </mat-card>
+
+    <mat-card class="summary-card late">
+      <h3>{{ getPercentLate() }}%</h3>
+      <p>Late Staff</p>
+    </mat-card>
+
+    <mat-card class="summary-card suspended">
+      <h3>{{ getSuspendedCount() }}</h3>
+      <p>Suspended Staff</p>
+    </mat-card>
+  </div>
+
+  <!-- TOP EARLY / LATE TABLES -->
+  <div class="top-tables">
+    <mat-card class="top-table-card">
+      <h3>Top 5 Early Comers</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Sign-In Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of getTopEarly()">
+            <td>{{ s.name }}</td>
+            <td>{{ s.department }}</td>
+            <td>{{ s.signInTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+
+    <mat-card class="top-table-card">
+      <h3>Top 5 Late Comers</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Sign-In Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of getTopLate()">
+            <td>{{ s.name }}</td>
+            <td>{{ s.department }}</td>
+            <td>{{ s.signInTime }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+
+</div>

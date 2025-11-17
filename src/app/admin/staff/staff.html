@@ -1,0 +1,54 @@
+<div class="staff-container">
+  <div class="staff-card" *ngFor="let staff of staffList">
+    <!-- HEADER -->
+    <div class="staff-header">
+      <div class="profile-section">
+        <img src="https://static.vecteezy.com/system/resources/previews/005/851/597/non_2x/young-boy-concepts-vector.jpg" alt="{{ staff.name }}" class="profile-pic" />
+        <div class="staff-info">
+          <h3>{{ staff.name }}</h3>
+          <p>{{ staff.department }}</p>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box total">
+          <span class="label">Total Sign-Ins</span>
+          <span class="value">{{ getSignInsByStaff(staff.name).length }}</span>
+        </div>
+        <div
+          class="stat-box late"
+          [ngClass]="{
+            good: getLateCount(staff.name) === 0,
+            moderate: getLateCount(staff.name) > 0 && getLateCount(staff.name) <= 2,
+            bad: getLateCount(staff.name) > 2
+          }"
+        >
+          <span class="label">Lateness</span>
+          <span class="value">{{ getLateCount(staff.name) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGN-IN TABLE -->
+    <div class="staff-table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Sign-In</th>
+            <th>Sign-Out</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rec of getSignInsByStaff(staff.name)">
+            <td>{{ rec.date }}</td>
+            <td>{{ rec.signInTime }}</td>
+            <td>{{ rec.signOutTime }}</td>
+            <td [ngClass]="rec.status.toLowerCase()">{{ rec.status }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
